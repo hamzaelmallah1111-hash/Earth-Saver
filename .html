@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth saver</title>
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+                url("earth saver.webp") center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.fade-in {
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+</head>
+<body>
+
+<div class="glass p-10 rounded-3xl shadow-2xl w-full max-w-lg text-white fade-in">
+
+    <h1 class="text-4xl font-bold text-center mb-8 text-green-300">
+        kinds of wastes
+    </h1>
+
+    <form id="wasteForm" class="space-y-4">
+
+        <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="waste" value="paper" class="w-5 h-5">
+            <span>الورق</span>
+        </label>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="waste" value="glass" class="w-5 h-5">
+            <span>زجاج</span>
+        </label>
+
+        <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="waste" value="organic" class="w-5 h-5">
+            <span>عضوي</span>
+        </label>
+
+        <button type="submit"
+                class="w-full bg-green-500 hover:bg-green-600 transition p-3 rounded-xl font-bold mt-4">
+            ارسال
+        </button>
+    </form>
+
+    <div id="result" class="mt-6 text-lg text-center font-semibold"></div>
+
+    <p class="mt-8 text-center text-gray-200">
+        you can do simple thing that can protect our Earth
+    </p>
+
+    <div class="text-center mt-4">
+        <a href="http://www.youtube.com/watch?v=2ZHbZZCIxzg"
+           target="_blank"
+           class="text-green-300 underline hover:text-green-200">
+            see that video
+        </a>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("wasteForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const selected = document.querySelector('input[name="waste"]:checked');
+    const result = document.getElementById("result");
+
+    if (!selected) {
+        result.innerText = "من فضلك اختر نوع المخلفات";
+        return;
+    }
+
+    if (selected.value === "paper") {
+        result.innerText = "الورق يعاد تدويره في حاويات الورق ♻️";
+    }
+
+    if (selected.value === "glass") {
+        result.innerText = "الزجاج يعاد تدويره في حاويات الزجاج ♻️";
+    }
+
+    if (selected.value === "organic") {
+        result.innerText = "المخلفات العضوية تستخدم في صناعة السماد 🌱";
+    }
+});
+</script>
+
+</body>
+</html>
